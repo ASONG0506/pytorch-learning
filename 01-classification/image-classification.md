@@ -1,5 +1,5 @@
 ## mnist数据集
-建立一个pytorch学习的环境。使用torch1.1.0和torchvision0.3.0  
+建立一个pytorch学习的环境，推荐使用virtualenv或者anaconda建立一个虚拟隔离环境。使用torch1.1.0和torchvision0.3.0  
 仿照搭建一个mnist识别的神经网络，并完成以下工作：  
 1. 更换优化器：从SGD到Adam：发现sgd能够用0.01的学习了，但是Adam就不行，学不到东西，必须把学习率降低，然后能够学到东西。
 2. 更换loss函数：从nll_loss转成cross_entropy
@@ -77,7 +77,12 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle = Fals
         ![mobilenet](https://note.youdao.com/yws/public/resource/fd103c4515462526cceea50e79224b7a/xmlnote/WEBRESOURCE8923c8e33914309c781d7559280ab8f3/24032)
         2. 具体的实现：比较重要的一点就是这个depth-wise的实现方式，**通过在nn.Conv2d()函数中加入一个与输入通道数相同的group参数实现逐层卷积depth-wise**，其余方面的实现比较简单和常规，详见代码
         
-    6. mobilenetv2网络实现
+    6. mobilenetv2网络实现:[链接](https://github.com/ASONG0506/pytorch-learning/blob/master/01-classification/cifar/models/cifar/mobilenetv2.py) 网络原理解析参考[博客](https://blog.csdn.net/u011995719/article/details/79135818)
+        1. 结构方面，简单来说就是参考了resnet的网络结构特点，并将可分离卷积进行了改进，在这之前首先进行通道的扩充，从而提升特征的表达能力。网络基础结构如图：  
+        ![mobilenetv2_base_module](https://note.youdao.com/yws/public/resource/fd103c4515462526cceea50e79224b7a/xmlnote/WEBRESOURCEeb9b2c78f3d7a49304c32525a76a5815/24065)  
+        网络总体结构如下图：
+        ![mobilenetv2_structure](https://note.youdao.com/yws/public/resource/fd103c4515462526cceea50e79224b7a/xmlnote/WEBRESOURCEf137d6935e4dbd899d07a338113db138/24068)  
+        2. 代码实现方面：由于加入了residua的结构，因此如何保持在通道数变化和特征宽高维度变化的情况下进行特征对齐是需要重点注意的内容：如果特征的宽高维度变化，也就是stride=2的时候，不使用参差结构；如果仅仅通道数量发生变化，宽高维度不发生变化，需要在参差结构中使用1×1的卷积进行通道的对齐操作。此外，由于加上了特征的扩充，所以需要在block中首先使用1×1卷积进行通道数的扩张。具体参考代码，代码中由于是对cifar数据进行的分类，所以部分参数的大小和论文中的大小不同，如最后的7×7特征的avgpool需要换成4×4等。
     
 * 训练与测试函数的构建
 * 训练、测试与中间输出结果的打印
