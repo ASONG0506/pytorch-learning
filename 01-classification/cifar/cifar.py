@@ -4,26 +4,6 @@
 # time:
 # usage: mnist classification
 # --------------------
-
-# import argparse
-# import os
-# import shutil
-# import time
-# import random
-# import sys
-# sys.path.append("./")
-#
-# import torch
-# import torch.nn as nn
-# import torch.nn.parallel
-# import torch.backends.cudnn as cudnn
-# import torch.optim as optim
-# import torch.utils.data as data
-# import torchvision.transforms as transforms
-# import torchvision.datasets as datasets
-# import models.cifar as models
-
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -38,7 +18,7 @@ import sys
 sys.path.append("./")
 
 import models.cifar.vgg as vgg
-# from utils import process_bar
+import models.cifar.resnet as resnet
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--lr" , default = 0.1, type=float, help="learning rate")
@@ -71,8 +51,8 @@ classes = {'plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 
 
 # 2. buld the model
-net = vgg.vgg16_bn().to(device)
-
+# net = vgg.vgg16_bn().to(device)
+net = resnet.ResNet50().to(device)
 # 3. resume the model
 
 
