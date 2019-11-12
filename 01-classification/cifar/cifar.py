@@ -22,6 +22,7 @@ import models.cifar.resnet as resnet
 import models.cifar.LeNet as LeNet
 import models.cifar.googlenet as GoogLeNet
 import models.cifar.mobilenet as MobileNet
+import models.cifar.mobilenetv2 as MobileNetV2
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--lr" , default = 0.1, type=float, help="learning rate")
@@ -58,8 +59,8 @@ classes = {'plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 # net = resnet.ResNet50()
 # net = LeNet.LeNet()
 # net = GoogLeNet.GoogLeNet()
-net = MobileNet.MobileNet()
-
+# net = MobileNet.MobileNet()
+net = MobileNetV2.MobileNetV2()
 
 net = net.to(device)
 

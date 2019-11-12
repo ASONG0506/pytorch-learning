@@ -1,6 +1,5 @@
 ## mnist数据集
-20191109  
-在/home/cjs/cjs_ws/pytorch/env_exercise/pytorch-learning建立一个pytorch学习的环境。使用torch1.1.0和torchvision0.3.0  
+建立一个pytorch学习的环境。使用torch1.1.0和torchvision0.3.0  
 仿照搭建一个mnist识别的神经网络，并完成以下工作：  
 1. 更换优化器：从SGD到Adam：发现sgd能够用0.01的学习了，但是Adam就不行，学不到东西，必须把学习率降低，然后能够学到东西。
 2. 更换loss函数：从nll_loss转成cross_entropy
@@ -78,7 +77,7 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle = Fals
         ![mobilenet](https://note.youdao.com/yws/public/resource/fd103c4515462526cceea50e79224b7a/xmlnote/WEBRESOURCE8923c8e33914309c781d7559280ab8f3/24032)
         2. 具体的实现：比较重要的一点就是这个depth-wise的实现方式，**通过在nn.Conv2d()函数中加入一个与输入通道数相同的group参数实现逐层卷积depth-wise**，其余方面的实现比较简单和常规，详见代码
         
-    6. 
+    6. mobilenetv2网络实现
     
 * 训练与测试函数的构建
 * 训练、测试与中间输出结果的打印
