@@ -20,6 +20,7 @@ sys.path.append("./")
 import models.cifar.vgg as vgg
 import models.cifar.resnet as resnet
 import models.cifar.LeNet as LeNet
+import models.cifar.googlenet as GoogLeNet
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--lr" , default = 0.1, type=float, help="learning rate")
@@ -43,10 +44,10 @@ transform_test = transforms.Compose([
 ])
 
 trainset = torchvision.datasets.CIFAR10(root = "../../data/", train=True, download=True, transform=transform_train)
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=128, shuffle=True, num_workers = 2)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=64, shuffle=True, num_workers = 2)
 
 testset = torchvision.datasets.CIFAR10(root = "../../data/", train=False, transform=transform_test, download=True)
-testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle = False, num_workers = 2)
+testloader = torch.utils.data.DataLoader(testset, batch_size=50, shuffle = False, num_workers = 2)
 
 classes = {'plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
 
@@ -54,7 +55,8 @@ classes = {'plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 # 2. buld the model
 # net = vgg.vgg16_bn()
 # net = resnet.ResNet50()
-net = LeNet.LeNet()
+# net = LeNet.LeNet()
+net = GoogLeNet.GoogLeNet()
 
 net = net.to(device)
 
