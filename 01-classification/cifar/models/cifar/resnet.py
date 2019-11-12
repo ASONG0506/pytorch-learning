@@ -6,6 +6,7 @@
 # reference: [1] Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
 #                Deep Residual Learning for Image Recognition. arXiv:1512.03385
 # keypoint: 网络有两种基础结构，BasicBlock和Bottleneck结构，通过不同的模块数量堆叠成了5种不同的网络结构
+# note: some code are imitated from https://github.com/kuangliu/pytorch-cifar/blob/master/models/resnet.py
 # --------------------
 
 import torch
@@ -138,5 +139,6 @@ def ResNet152():
 if __name__ == "__main__":
     inputs = torch.rand(2, 3, 28, 28)
     net = ResNet18()
+    print(net)
     outputs = net(inputs)
     print ("the output size is {}".format(outputs.size()))

@@ -19,6 +19,7 @@ sys.path.append("./")
 
 import models.cifar.vgg as vgg
 import models.cifar.resnet as resnet
+import models.cifar.LeNet as LeNet
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--lr" , default = 0.1, type=float, help="learning rate")
@@ -51,10 +52,11 @@ classes = {'plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 
 
 # 2. buld the model
-# net = vgg.vgg16_bn().to(device)
-net = resnet.ResNet50().to(device)
-# 3. resume the model
+# net = vgg.vgg16_bn()
+# net = resnet.ResNet50()
+net = LeNet.LeNet()
 
+net = net.to(device)
 
 # 4. set the loss function and optimizer
 criterion = nn.CrossEntropyLoss()
