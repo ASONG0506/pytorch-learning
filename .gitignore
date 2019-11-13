@@ -1,1 +1,4 @@
 data
+01-classification/cifar/checkpoint/
+01-classification/cifar/models/__pycache__/
+01-classification/cifar/models/cifar/__pycache__/
