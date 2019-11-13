@@ -8,7 +8,7 @@
 [代码链接](https://github.com/ASONG0506/pytorch-learning/blob/master/01-classification/mnist/main.py)
 ----------
 
-## 使用cifat数据集进行数据分类
+## 使用cifar数据集进行数据分类
 ### 0. 代码实现的总体步骤
 
 **代码使用**：  
