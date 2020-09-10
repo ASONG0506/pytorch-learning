@@ -126,4 +126,4 @@ if __name__ == "__main__":
     print (model)
     dummy_input = torch.rand(20, 1, 28, 28)
     with SummaryWriter("./log", comment='sample_mnist_cnn') as w:
-        w.add_graph(model, (dummy_input, ))
+        w.add_graph(model, (dummy_input))
