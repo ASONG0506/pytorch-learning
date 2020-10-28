@@ -1,3 +1,4 @@
+**/*.onnx
 data
 01-classification/cifar/checkpoint/
 01-classification/cifar/models/__pycache__/
