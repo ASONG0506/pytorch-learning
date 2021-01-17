@@ -1,3 +1,4 @@
+**/*.pth
 **/*.onnx
 data
 01-classification/cifar/checkpoint/
